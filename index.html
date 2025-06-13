@@ -1,126 +1,130 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Boston Housing Price Prediction</title>
-  <link href="https://fonts.googleapis.com/css2?family=Urbanist:wght@400;600&display=swap" rel="stylesheet">
-  <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
+    <meta charset="UTF-8">
+    <title>Boston Housing Price Prediction</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background-color: #e3f2fd; /* light blue background */
+            color: #0d47a1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
 
-    body {
-      font-family: 'Urbanist', sans-serif;
-      background: linear-gradient(135deg, #e3f2fd, #bbdefb);
-      color: #003366;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      min-height: 100vh;
-      padding: 20px;
-    }
+        .container {
+            background-color: #ffffff;
+            border: 1px solid #90caf9;
+            border-radius: 12px;
+            padding: 30px;
+            width: 100%;
+            max-width: 550px;
+            box-shadow: 0 4px 16px rgba(21, 101, 192, 0.15);
+        }
 
-    .container {
-      background-color: #ffffff;
-      border: 2px solid #2196f3;
-      border-radius: 15px;
-      box-shadow: 0 8px 20px rgba(33, 150, 243, 0.2);
-      padding: 40px 30px;
-      max-width: 600px;
-      width: 100%;
-    }
+        h2 {
+            text-align: center;
+            color: #1565c0;
+            margin-bottom: 25px;
+        }
 
-    h2 {
-      text-align: center;
-      font-weight: 600;
-      margin-bottom: 30px;
-      color: #0d47a1;
-    }
+        form label {
+            display: block;
+            margin-top: 15px;
+            font-weight: bold;
+            color: #1976d2;
+        }
 
-    form {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 20px;
-      justify-content: space-between;
-    }
+        input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            border: 1px solid #bbdefb;
+            border-radius: 6px;
+            background-color: #e3f2fd;
+            color: #0d47a1;
+            font-size: 14px;
+        }
 
-    .input-group {
-      width: 48%;
-      display: flex;
-      flex-direction: column;
-    }
+        input[type="submit"] {
+            margin-top: 25px;
+            width: 100%;
+            padding: 12px;
+            background-color: #42a5f5;
+            color: #ffffff;
+            font-size: 16px;
+            border: none;
+            border-radius: 8px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
 
-    label {
-      font-size: 14px;
-      margin-bottom: 6px;
-      color: #0d47a1;
-    }
+        input[type="submit"]:hover {
+            background-color: #1e88e5;
+        }
 
-    input[type="text"] {
-      padding: 10px;
-      border-radius: 6px;
-      border: 1px solid #90caf9;
-      background-color: #e3f2fd;
-      color: #003366;
-      font-size: 14px;
-      outline: none;
-    }
-
-    input[type="text"]:focus {
-      border-color: #2196f3;
-      background-color: #ffffff;
-    }
-
-    .submit-btn {
-      width: 100%;
-      padding: 12px;
-      background: #2196f3;
-      color: white;
-      font-size: 16px;
-      font-weight: bold;
-      border: none;
-      border-radius: 8px;
-      cursor: pointer;
-      margin-top: 20px;
-      transition: background 0.3s ease;
-    }
-
-    .submit-btn:hover {
-      background: #1976d2;
-    }
-
-    h3 {
-      text-align: center;
-      margin-top: 20px;
-      color: #2e7d32;
-    }
-
-    @media (max-width: 600px) {
-      .input-group {
-        width: 100%;
-      }
-    }
-  </style>
+        h3 {
+            text-align: center;
+            margin-top: 20px;
+            color: #0d47a1;
+        }
+    </style>
 </head>
 <body>
-  <div class="container">
-    <h2>Boston Housing Price Prediction</h2>
-    <form action="/predict" method="post">
-      {% for field in ['CRIM','ZN','INDUS','CHAS','NOX','RM','AGE','DIS','RAD','TAX','PTRATIO','B','LSTAT'] %}
-        <div class="input-group">
-          <label for="{{ field }}">{{ field }}:</label>
-          <input type="text" name="{{ field }}" id="{{ field }}">
-        </div>
-      {% endfor %}
-      <button type="submit" class="submit-btn">Predict</button>
-    </form>
+    <div class="container">
+        <h2>Boston Housing Price Prediction</h2>
+        <form action="/predict" method="post">
 
-    {% if prediction_text %}
-      <h3>{{ prediction_text }}</h3>
-    {% endif %}
-  </div>
+            <label>CRIM:</label>
+            <input type="text" name="CRIM">
+
+            <label>ZN:</label>
+            <input type="text" name="ZN">
+
+            <label>INDUS:</label>
+            <input type="text" name="INDUS">
+
+            <label>CHAS:</label>
+            <input type="text" name="CHAS">
+
+            <label>NOX:</label>
+            <input type="text" name="NOX">
+
+            <label>RM:</label>
+            <input type="text" name="RM">
+
+            <label>AGE:</label>
+            <input type="text" name="AGE">
+
+            <label>DIS:</label>
+            <input type="text" name="DIS">
+
+            <label>RAD:</label>
+            <input type="text" name="RAD">
+
+            <label>TAX:</label>
+            <input type="text" name="TAX">
+
+            <label>PTRATIO:</label>
+            <input type="text" name="PTRATIO">
+
+            <label>B:</label>
+            <input type="text" name="B">
+
+            <label>LSTAT:</label>
+            <input type="text" name="LSTAT">
+
+            <input type="submit" value="Predict">
+        </form>
+
+        {% if prediction_text %}
+            <h3>{{ prediction_text }}</h3>
+        {% endif %}
+    </div>
 </body>
 </html>
